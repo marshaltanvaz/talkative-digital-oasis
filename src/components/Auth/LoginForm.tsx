@@ -9,26 +9,30 @@ import { FcGoogle } from 'react-icons/fc';
 export function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const { signIn, signInWithGoogle } = useAuth();
+  const [localError, setLocalError] = useState('');
+  const { signIn, signInWithGoogle, error: authError, loading } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLocalError('');
+    
     try {
       await signIn(email, password);
       navigate('/dashboard');
     } catch (err) {
-      setError('Failed to sign in. Please check your credentials.');
+      setLocalError('Failed to sign in. Please check your credentials.');
     }
   };
 
   const handleGoogleSignIn = async () => {
+    setLocalError('');
+    
     try {
       await signInWithGoogle();
       navigate('/dashboard');
     } catch (err) {
-      setError('Failed to sign in with Google. Please try again.');
+      setLocalError('Failed to sign in with Google. Please try again.');
     }
   };
 
@@ -50,6 +54,7 @@ export function LoginForm() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
+                disabled={loading}
               />
             </div>
             <div className="flex flex-col space-y-1.5">
@@ -61,14 +66,23 @@ export function LoginForm() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                disabled={loading}
               />
             </div>
-            {error && <p className="text-sm text-red-500">{error}</p>}
+            {(localError || authError) && (
+              <p className="text-sm text-red-500">
+                {localError || authError}
+              </p>
+            )}
           </div>
         </CardContent>
         <CardFooter className="flex flex-col space-y-4">
-          <Button className="w-full" type="submit">
-            Sign In
+          <Button 
+            className="w-full" 
+            type="submit"
+            disabled={loading}
+          >
+            {loading ? 'Signing in...' : 'Sign In'}
           </Button>
           <div className="relative w-full">
             <div className="absolute inset-0 flex items-center">
@@ -85,9 +99,10 @@ export function LoginForm() {
             type="button"
             className="w-full"
             onClick={handleGoogleSignIn}
+            disabled={loading}
           >
             <FcGoogle className="mr-2 h-4 w-4" />
-            Google
+            {loading ? 'Signing in...' : 'Google'}
           </Button>
           <p className="text-center text-sm text-muted-foreground">
             Don't have an account?{' '}
