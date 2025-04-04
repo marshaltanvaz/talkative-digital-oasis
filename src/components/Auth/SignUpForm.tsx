@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useAuth } from '../../lib/AuthContext';
-import { Button } from '../ui/button';
-import { Input } from '../ui/input';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../ui/card';
+import { Button } from '../../components/ui/button';
+import { Input } from '../../components/ui/input';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../../components/ui/card';
 import { useNavigate, Link } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
 
