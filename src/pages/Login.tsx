@@ -1,18 +1,18 @@
-
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import LoginForm from '../components/Auth/LoginForm';
+import { LoginForm } from '../components/Auth/LoginForm';
+import { useAuth } from '../lib/AuthContext';
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
+  const { user } = useAuth();
   
   // Check if user is already logged in
   useEffect(() => {
-    const user = localStorage.getItem('skypeCloneUser');
     if (user) {
       navigate('/dashboard');
     }
-  }, [navigate]);
+  }, [user, navigate]);
   
   return (
     <div className="min-h-screen bg-black flex flex-col items-center justify-center p-4">
