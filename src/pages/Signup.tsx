@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LoginForm } from '../components/Auth/LoginForm';
+import { SignUpForm } from '../components/Auth/SignUpForm';
 import { useAuth } from '../lib/AuthContext';
 
-const Login: React.FC = () => {
+const Signup: React.FC = () => {
   const navigate = useNavigate();
   const { user, loading } = useAuth();
   
@@ -26,13 +26,13 @@ const Login: React.FC = () => {
       <div className="w-full max-w-md">
         <div className="mb-8 text-center">
           <h1 className="text-4xl font-bold text-red-600 mb-2">Skype Clone</h1>
-          <p className="text-white/80">Connect with friends and family</p>
+          <p className="text-white/80">Create your account</p>
         </div>
         
-        <LoginForm />
+        <SignUpForm />
       </div>
     </div>
   );
 };
 
-export default Login;
+export default Signup; 
