@@ -1,18 +1,19 @@
-
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { useAuth } from '../lib/AuthContext';
 
 const Index: React.FC = () => {
   const navigate = useNavigate();
+  const { user } = useAuth();
   
-  // Check if user is already logged in
   useEffect(() => {
-    const user = localStorage.getItem('skypeCloneUser');
     if (user) {
       navigate('/dashboard');
+    } else {
+      navigate('/login');
     }
-  }, [navigate]);
+  }, [user, navigate]);
   
   return (
     <div className="min-h-screen flex flex-col">
