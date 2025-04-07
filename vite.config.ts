@@ -14,19 +14,6 @@ export default defineConfig(({ mode }) => ({
     mode === 'development' &&
     componentTagger(),
   ].filter(Boolean),
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-    },
-  },
-  optimizeDeps: {
-    exclude: [
-      'src/components/ui/toaster',
-      'src/components/ui/sonner',
-      'src/components/ui/tooltip',
-      'src/components/ui/toast'
-    ]
-  },
   build: {
     rollupOptions: {
       input: {
