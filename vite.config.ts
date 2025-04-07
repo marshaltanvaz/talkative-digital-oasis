@@ -20,4 +20,12 @@ export default defineConfig(({ mode }) => ({
       "@ui": path.resolve(__dirname, "./src/components/ui"),
     },
   },
+  optimizeDeps: {
+    exclude: [
+      'src/components/ui/toaster',
+      'src/components/ui/sonner',
+      'src/components/ui/tooltip',
+      'src/components/ui/toast'
+    ]
+  }
 }));
