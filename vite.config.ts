@@ -18,6 +18,9 @@ export default defineConfig(({ mode }) => ({
     alias: {
       "@": path.resolve(__dirname, "./src"),
       "@ui": path.resolve(__dirname, "./src/components/ui"),
+      "@components": path.resolve(__dirname, "./src/components"),
+      "@pages": path.resolve(__dirname, "./src/pages"),
+      "@lib": path.resolve(__dirname, "./src/lib"),
     },
   },
   optimizeDeps: {
@@ -27,5 +30,12 @@ export default defineConfig(({ mode }) => ({
       'src/components/ui/tooltip',
       'src/components/ui/toast'
     ]
-  }
+  },
+  build: {
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, 'index.html'),
+      },
+    },
+  },
 }));
