@@ -1,3 +1,4 @@
+// Toaster component for displaying toast notifications
 import { useToast } from "./use-toast"
 import {
   Toast,
