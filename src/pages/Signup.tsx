@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { SignUpForm } from '../components/Auth/SignUpForm';
 import { useAuth } from '../lib/AuthContext';
 
-const Signup: React.FC = () => {
+const SignUp: React.FC = () => {
   const navigate = useNavigate();
   const { user, loading } = useAuth();
   
@@ -35,4 +35,4 @@ const Signup: React.FC = () => {
   );
 };
 
-export default Signup; 
+export default SignUp; 
